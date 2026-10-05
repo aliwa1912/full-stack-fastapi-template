@@ -64,21 +64,33 @@ test.describe("Admin control panel", () => {
     const token = await page.evaluate(() =>
       localStorage.getItem("access_token"),
     )
-    const carId = await page.evaluate(async (authToken) => {
-      const response = await fetch("/api/v1/cars/", {
-        headers: { Authorization: `Bearer ${authToken}` },
-      })
-      const body = await response.json()
-      return body.data?.[0]?.id ?? null
-    }, token)
-
-    test.skip(
-      !carId,
-      "No vehicle available to attach the inquiry to in this environment",
-    )
+    // The test creates its own vehicle so it never depends on seeded data.
+    const car = await page.request.post("/api/v1/cars/", {
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        title: "Confirmation Fixture",
+        make: "Aurelia",
+        model: "Confirmer",
+        year: 2024,
+        description: "Temporary vehicle created to host a test lead.",
+        price: 50000,
+        mileage: 1000,
+        transmission: "automatic",
+        fuel_type: "petrol",
+        condition: "new",
+        location: "Casablanca",
+        image_urls: [],
+        display_order: 0,
+      },
+    })
+    expect(
+      car.ok(),
+      `seed vehicle failed: ${car.status()} ${JSON.stringify(await car.text())}`,
+    ).toBe(true)
+    const carId = (await car.json()).id as string
 
     const created = await page.request.post(
-      `/api/v1/cars/${carId as string}/inquiries/`,
+      `/api/v1/cars/${carId}/inquiries/`,
       {
         headers: { Authorization: `Bearer ${token}` },
         data: {
@@ -120,5 +132,10 @@ test.describe("Admin control panel", () => {
     await row.getByRole("button", { name: "Delete inquiry" }).click()
     await page.getByRole("button", { name: "Delete inquiry" }).last().click()
     await expect(row).toBeHidden()
+
+    // Clean up the fixture vehicle.
+    await page.request.delete(`/api/v1/cars/${carId}/`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
   })
 })
