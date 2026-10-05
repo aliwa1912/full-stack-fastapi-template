@@ -4,9 +4,11 @@ import sentry_sdk
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
 from starlette.middleware.cors import CORSMiddleware
+from starlette.staticfiles import StaticFiles
 
 from app.api.main import api_router
 from app.core.config import settings
+from app.core.uploads import UPLOADS_URL_PREFIX, ensure_uploads_dir
 
 FRONTEND_DIR = Path(__file__).parent / "frontend"
 
@@ -33,4 +35,14 @@ app.add_middleware(
 )
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
+
+# Uploaded vehicle photos, mounted before the SPA catch-all so they are not
+# swallowed by the frontend routes.
+ensure_uploads_dir()
+app.mount(
+    UPLOADS_URL_PREFIX,
+    StaticFiles(directory=ensure_uploads_dir(), check_dir=False),
+    name="uploads",
+)
+
 app.frontend("/", directory=FRONTEND_DIR)

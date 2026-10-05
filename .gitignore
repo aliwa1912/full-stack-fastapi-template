@@ -2,6 +2,8 @@
 !.vscode/extensions.json
 node_modules/
 backend/app/frontend/
+backend/app/static/uploads/
+frontend/tsconfig.tsbuildinfo
 /test-results/
 /playwright-report/
 /blob-report/

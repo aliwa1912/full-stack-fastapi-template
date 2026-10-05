@@ -10,17 +10,31 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LayoutRouteImport } from './routes/_layout'
+import { Route as PublicRouteImport } from './routes/_public'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as RecoverPasswordRouteImport } from './routes/recover-password'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SignupRouteImport } from './routes/signup'
-import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
 import { Route as LayoutAdminRouteImport } from './routes/_layout/admin'
 import { Route as LayoutItemsRouteImport } from './routes/_layout/items'
 import { Route as LayoutSettingsRouteImport } from './routes/_layout/settings'
+import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as LayoutAdminIndexRouteImport } from './routes/_layout/admin/index'
+import { Route as LayoutAdminInquiriesRouteImport } from './routes/_layout/admin/inquiries'
+import { Route as LayoutAdminInventoryRouteImport } from './routes/_layout/admin/inventory'
+import { Route as LayoutAdminSiteRouteImport } from './routes/_layout/admin/site'
+import { Route as LayoutAdminUsersRouteImport } from './routes/_layout/admin/users'
+import { Route as LayoutDashboardIndexRouteImport } from './routes/_layout/dashboard/index'
+import { Route as LayoutDashboardVehiclesRouteImport } from './routes/_layout/dashboard/vehicles'
+import { Route as PublicInventoryIndexRouteImport } from './routes/_public/inventory/index'
+import { Route as PublicInventoryCarIdRouteImport } from './routes/_public/inventory/$carId'
 
 const LayoutRoute = LayoutRouteImport.update({
   id: '/_layout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicRoute = PublicRouteImport.update({
+  id: '/_public',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -43,11 +57,6 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LayoutIndexRoute = LayoutIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => LayoutRoute,
-} as any)
 const LayoutAdminRoute = LayoutAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -63,38 +72,115 @@ const LayoutSettingsRoute = LayoutSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => LayoutRoute,
 } as any)
+const PublicIndexRoute = PublicIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const LayoutAdminIndexRoute = LayoutAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LayoutAdminRoute,
+} as any)
+const LayoutAdminInquiriesRoute = LayoutAdminInquiriesRouteImport.update({
+  id: '/inquiries',
+  path: '/inquiries',
+  getParentRoute: () => LayoutAdminRoute,
+} as any)
+const LayoutAdminInventoryRoute = LayoutAdminInventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => LayoutAdminRoute,
+} as any)
+const LayoutAdminSiteRoute = LayoutAdminSiteRouteImport.update({
+  id: '/site',
+  path: '/site',
+  getParentRoute: () => LayoutAdminRoute,
+} as any)
+const LayoutAdminUsersRoute = LayoutAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => LayoutAdminRoute,
+} as any)
+const LayoutDashboardIndexRoute = LayoutDashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutDashboardVehiclesRoute = LayoutDashboardVehiclesRouteImport.update({
+  id: '/dashboard/vehicles',
+  path: '/dashboard/vehicles',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const PublicInventoryIndexRoute = PublicInventoryIndexRouteImport.update({
+  id: '/inventory/',
+  path: '/inventory/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicInventoryCarIdRoute = PublicInventoryCarIdRouteImport.update({
+  id: '/inventory/$carId',
+  path: '/inventory/$carId',
+  getParentRoute: () => PublicRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof LayoutIndexRoute
+  '/': typeof PublicIndexRoute
   '/login': typeof LoginRoute
   '/recover-password': typeof RecoverPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
-  '/admin': typeof LayoutAdminRoute
+  '/admin': typeof LayoutAdminRouteWithChildren
   '/items': typeof LayoutItemsRoute
   '/settings': typeof LayoutSettingsRoute
+  '/admin/inquiries': typeof LayoutAdminInquiriesRoute
+  '/admin/inventory': typeof LayoutAdminInventoryRoute
+  '/admin/site': typeof LayoutAdminSiteRoute
+  '/admin/users': typeof LayoutAdminUsersRoute
+  '/dashboard/vehicles': typeof LayoutDashboardVehiclesRoute
+  '/inventory/$carId': typeof PublicInventoryCarIdRoute
+  '/admin/': typeof LayoutAdminIndexRoute
+  '/dashboard/': typeof LayoutDashboardIndexRoute
+  '/inventory/': typeof PublicInventoryIndexRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof PublicIndexRoute
   '/login': typeof LoginRoute
   '/recover-password': typeof RecoverPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
-  '/admin': typeof LayoutAdminRoute
   '/items': typeof LayoutItemsRoute
   '/settings': typeof LayoutSettingsRoute
-  '/': typeof LayoutIndexRoute
+  '/admin/inquiries': typeof LayoutAdminInquiriesRoute
+  '/admin/inventory': typeof LayoutAdminInventoryRoute
+  '/admin/site': typeof LayoutAdminSiteRoute
+  '/admin/users': typeof LayoutAdminUsersRoute
+  '/dashboard/vehicles': typeof LayoutDashboardVehiclesRoute
+  '/inventory/$carId': typeof PublicInventoryCarIdRoute
+  '/admin': typeof LayoutAdminIndexRoute
+  '/dashboard': typeof LayoutDashboardIndexRoute
+  '/inventory': typeof PublicInventoryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_layout': typeof LayoutRouteWithChildren
+  '/_public': typeof PublicRouteWithChildren
   '/login': typeof LoginRoute
   '/recover-password': typeof RecoverPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
-  '/_layout/admin': typeof LayoutAdminRoute
+  '/_layout/admin': typeof LayoutAdminRouteWithChildren
   '/_layout/items': typeof LayoutItemsRoute
   '/_layout/settings': typeof LayoutSettingsRoute
-  '/_layout/': typeof LayoutIndexRoute
+  '/_public/': typeof PublicIndexRoute
+  '/_layout/admin/inquiries': typeof LayoutAdminInquiriesRoute
+  '/_layout/admin/inventory': typeof LayoutAdminInventoryRoute
+  '/_layout/admin/site': typeof LayoutAdminSiteRoute
+  '/_layout/admin/users': typeof LayoutAdminUsersRoute
+  '/_layout/dashboard/vehicles': typeof LayoutDashboardVehiclesRoute
+  '/_public/inventory/$carId': typeof PublicInventoryCarIdRoute
+  '/_layout/admin/': typeof LayoutAdminIndexRoute
+  '/_layout/dashboard/': typeof LayoutDashboardIndexRoute
+  '/_public/inventory/': typeof PublicInventoryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,19 +193,37 @@ export interface FileRouteTypes {
     | '/admin'
     | '/items'
     | '/settings'
+    | '/admin/inquiries'
+    | '/admin/inventory'
+    | '/admin/site'
+    | '/admin/users'
+    | '/dashboard/vehicles'
+    | '/inventory/$carId'
+    | '/admin/'
+    | '/dashboard/'
+    | '/inventory/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/login'
     | '/recover-password'
     | '/reset-password'
     | '/signup'
-    | '/admin'
     | '/items'
     | '/settings'
-    | '/'
+    | '/admin/inquiries'
+    | '/admin/inventory'
+    | '/admin/site'
+    | '/admin/users'
+    | '/dashboard/vehicles'
+    | '/inventory/$carId'
+    | '/admin'
+    | '/dashboard'
+    | '/inventory'
   id:
     | '__root__'
     | '/_layout'
+    | '/_public'
     | '/login'
     | '/recover-password'
     | '/reset-password'
@@ -127,11 +231,21 @@ export interface FileRouteTypes {
     | '/_layout/admin'
     | '/_layout/items'
     | '/_layout/settings'
-    | '/_layout/'
+    | '/_public/'
+    | '/_layout/admin/inquiries'
+    | '/_layout/admin/inventory'
+    | '/_layout/admin/site'
+    | '/_layout/admin/users'
+    | '/_layout/dashboard/vehicles'
+    | '/_public/inventory/$carId'
+    | '/_layout/admin/'
+    | '/_layout/dashboard/'
+    | '/_public/inventory/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   LayoutRoute: typeof LayoutRouteWithChildren
+  PublicRoute: typeof PublicRouteWithChildren
   LoginRoute: typeof LoginRoute
   RecoverPasswordRoute: typeof RecoverPasswordRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
@@ -145,6 +259,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof LayoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public': {
+      id: '/_public'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof PublicRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -175,13 +296,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_layout/': {
-      id: '/_layout/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof LayoutIndexRouteImport
-      parentRoute: typeof LayoutRoute
-    }
     '/_layout/admin': {
       id: '/_layout/admin'
       path: '/admin'
@@ -203,28 +317,136 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutSettingsRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_public/': {
+      id: '/_public/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_layout/admin/': {
+      id: '/_layout/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof LayoutAdminIndexRouteImport
+      parentRoute: typeof LayoutAdminRoute
+    }
+    '/_layout/admin/inquiries': {
+      id: '/_layout/admin/inquiries'
+      path: '/inquiries'
+      fullPath: '/admin/inquiries'
+      preLoaderRoute: typeof LayoutAdminInquiriesRouteImport
+      parentRoute: typeof LayoutAdminRoute
+    }
+    '/_layout/admin/inventory': {
+      id: '/_layout/admin/inventory'
+      path: '/inventory'
+      fullPath: '/admin/inventory'
+      preLoaderRoute: typeof LayoutAdminInventoryRouteImport
+      parentRoute: typeof LayoutAdminRoute
+    }
+    '/_layout/admin/site': {
+      id: '/_layout/admin/site'
+      path: '/site'
+      fullPath: '/admin/site'
+      preLoaderRoute: typeof LayoutAdminSiteRouteImport
+      parentRoute: typeof LayoutAdminRoute
+    }
+    '/_layout/admin/users': {
+      id: '/_layout/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof LayoutAdminUsersRouteImport
+      parentRoute: typeof LayoutAdminRoute
+    }
+    '/_layout/dashboard/': {
+      id: '/_layout/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof LayoutDashboardIndexRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/dashboard/vehicles': {
+      id: '/_layout/dashboard/vehicles'
+      path: '/dashboard/vehicles'
+      fullPath: '/dashboard/vehicles'
+      preLoaderRoute: typeof LayoutDashboardVehiclesRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_public/inventory/': {
+      id: '/_public/inventory/'
+      path: '/inventory'
+      fullPath: '/inventory/'
+      preLoaderRoute: typeof PublicInventoryIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/inventory/$carId': {
+      id: '/_public/inventory/$carId'
+      path: '/inventory/$carId'
+      fullPath: '/inventory/$carId'
+      preLoaderRoute: typeof PublicInventoryCarIdRouteImport
+      parentRoute: typeof PublicRoute
+    }
   }
 }
 
+interface LayoutAdminRouteChildren {
+  LayoutAdminInquiriesRoute: typeof LayoutAdminInquiriesRoute
+  LayoutAdminInventoryRoute: typeof LayoutAdminInventoryRoute
+  LayoutAdminSiteRoute: typeof LayoutAdminSiteRoute
+  LayoutAdminUsersRoute: typeof LayoutAdminUsersRoute
+  LayoutAdminIndexRoute: typeof LayoutAdminIndexRoute
+}
+
+const LayoutAdminRouteChildren: LayoutAdminRouteChildren = {
+  LayoutAdminInquiriesRoute: LayoutAdminInquiriesRoute,
+  LayoutAdminInventoryRoute: LayoutAdminInventoryRoute,
+  LayoutAdminSiteRoute: LayoutAdminSiteRoute,
+  LayoutAdminUsersRoute: LayoutAdminUsersRoute,
+  LayoutAdminIndexRoute: LayoutAdminIndexRoute,
+}
+
+const LayoutAdminRouteWithChildren = LayoutAdminRoute._addFileChildren(
+  LayoutAdminRouteChildren,
+)
+
 interface LayoutRouteChildren {
-  LayoutAdminRoute: typeof LayoutAdminRoute
+  LayoutAdminRoute: typeof LayoutAdminRouteWithChildren
   LayoutItemsRoute: typeof LayoutItemsRoute
   LayoutSettingsRoute: typeof LayoutSettingsRoute
-  LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutDashboardVehiclesRoute: typeof LayoutDashboardVehiclesRoute
+  LayoutDashboardIndexRoute: typeof LayoutDashboardIndexRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
-  LayoutAdminRoute: LayoutAdminRoute,
+  LayoutAdminRoute: LayoutAdminRouteWithChildren,
   LayoutItemsRoute: LayoutItemsRoute,
   LayoutSettingsRoute: LayoutSettingsRoute,
-  LayoutIndexRoute: LayoutIndexRoute,
+  LayoutDashboardVehiclesRoute: LayoutDashboardVehiclesRoute,
+  LayoutDashboardIndexRoute: LayoutDashboardIndexRoute,
 }
 
 const LayoutRouteWithChildren =
   LayoutRoute._addFileChildren(LayoutRouteChildren)
 
+interface PublicRouteChildren {
+  PublicIndexRoute: typeof PublicIndexRoute
+  PublicInventoryCarIdRoute: typeof PublicInventoryCarIdRoute
+  PublicInventoryIndexRoute: typeof PublicInventoryIndexRoute
+}
+
+const PublicRouteChildren: PublicRouteChildren = {
+  PublicIndexRoute: PublicIndexRoute,
+  PublicInventoryCarIdRoute: PublicInventoryCarIdRoute,
+  PublicInventoryIndexRoute: PublicInventoryIndexRoute,
+}
+
+const PublicRouteWithChildren =
+  PublicRoute._addFileChildren(PublicRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   LayoutRoute: LayoutRouteWithChildren,
+  PublicRoute: PublicRouteWithChildren,
   LoginRoute: LoginRoute,
   RecoverPasswordRoute: RecoverPasswordRoute,
   ResetPasswordRoute: ResetPasswordRoute,

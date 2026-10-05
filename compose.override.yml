@@ -25,7 +25,10 @@ services:
       - --api.insecure=true
   db:
     ports:
-      - "5432:5432"
+      # Host ports 5432 and 5433 are already taken by local PostgreSQL
+      # installs (v17 and v18), so publish the container on 55432.
+      # .env points at 55432.
+      - "55432:5432"
 
   adminer:
     ports:
@@ -61,6 +64,9 @@ services:
             - ./frontend/test-results
     # TODO: remove once coverage is done locally
     volumes:
+      # Mount the source so local edits and the frontend build are served
+      # without rebuilding the image.
+      - ./backend:/app/backend
       - ./backend/htmlcov:/app/backend/htmlcov
     environment:
       FASTAPI_ENV: "development"
@@ -94,6 +100,7 @@ services:
       - PLAYWRIGHT_HTML_HOST=0.0.0.0
       - CI=${CI:-}
     volumes:
+      - ./frontend/tests:/app/frontend/tests
       - ./frontend/blob-report:/app/frontend/blob-report
       - ./frontend/test-results:/app/frontend/test-results
     ports:

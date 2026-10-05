@@ -5,6 +5,60 @@ export type ClientOptions = {
 };
 
 /**
+ * AdminStatsPublic
+ */
+export type AdminStatsPublic = {
+    /**
+     * Total Cars
+     */
+    total_cars: number;
+    /**
+     * Available Cars
+     */
+    available_cars: number;
+    /**
+     * Sold Cars
+     */
+    sold_cars: number;
+    /**
+     * Featured Cars
+     */
+    featured_cars: number;
+    /**
+     * Total Users
+     */
+    total_users: number;
+    /**
+     * Total Inquiries
+     */
+    total_inquiries: number;
+    /**
+     * New Inquiries
+     */
+    new_inquiries: number;
+};
+
+/**
+ * Body_admin-admin_upload_car_images
+ */
+export type Body_admin_admin_upload_car_images = {
+    /**
+     * Files
+     */
+    files: Array<Blob | File>;
+};
+
+/**
+ * Body_cars-upload_car_images
+ */
+export type Body_cars_upload_car_images = {
+    /**
+     * Files
+     */
+    files: Array<Blob | File>;
+};
+
+/**
  * Body_login-login_access_token
  */
 export type Body_login_login_access_token = {
@@ -32,6 +86,382 @@ export type Body_login_login_access_token = {
      * Client Secret
      */
     client_secret?: string | null;
+};
+
+/**
+ * CarCreate
+ */
+export type CarCreate = {
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Make
+     */
+    make: string;
+    /**
+     * Model
+     */
+    model: string;
+    /**
+     * Year
+     */
+    year: number;
+    /**
+     * Price
+     */
+    price: number;
+    /**
+     * Mileage
+     */
+    mileage?: number;
+    /**
+     * Engine
+     */
+    engine?: string | null;
+    /**
+     * Transmission
+     */
+    transmission?: string | null;
+    /**
+     * Exterior Color
+     */
+    exterior_color?: string | null;
+    /**
+     * Interior Color
+     */
+    interior_color?: string | null;
+    /**
+     * Vin
+     */
+    vin?: string | null;
+    /**
+     * Description
+     */
+    description?: string | null;
+    /**
+     * Is Featured
+     */
+    is_featured?: boolean;
+    /**
+     * Is Sold
+     */
+    is_sold?: boolean;
+};
+
+/**
+ * CarImagePublic
+ */
+export type CarImagePublic = {
+    /**
+     * Image Url
+     */
+    image_url: string;
+    /**
+     * Is Primary
+     */
+    is_primary?: boolean;
+    /**
+     * Display Order
+     */
+    display_order?: number;
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Car Id
+     */
+    car_id: string;
+};
+
+/**
+ * CarImageReorder
+ */
+export type CarImageReorder = {
+    /**
+     * Image Ids
+     */
+    image_ids: Array<string>;
+};
+
+/**
+ * CarInquiriesPublic
+ */
+export type CarInquiriesPublic = {
+    /**
+     * Data
+     */
+    data: Array<CarInquiryPublic>;
+    /**
+     * Count
+     */
+    count: number;
+    /**
+     * New Count
+     */
+    new_count: number;
+};
+
+/**
+ * CarInquiryCarPublic
+ */
+export type CarInquiryCarPublic = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Make
+     */
+    make: string;
+    /**
+     * Model
+     */
+    model: string;
+    /**
+     * Year
+     */
+    year: number;
+};
+
+/**
+ * CarInquiryCreate
+ */
+export type CarInquiryCreate = {
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Email
+     */
+    email: string;
+    /**
+     * Phone
+     */
+    phone?: string | null;
+    /**
+     * Message
+     */
+    message?: string | null;
+};
+
+/**
+ * CarInquiryPublic
+ */
+export type CarInquiryPublic = {
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Email
+     */
+    email: string;
+    /**
+     * Phone
+     */
+    phone?: string | null;
+    /**
+     * Message
+     */
+    message?: string | null;
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Car Id
+     */
+    car_id: string;
+    /**
+     * Is Read
+     */
+    is_read: boolean;
+    /**
+     * Notes
+     */
+    notes?: string | null;
+    /**
+     * Created At
+     */
+    created_at: string;
+    car?: CarInquiryCarPublic | null;
+};
+
+/**
+ * CarInquiryUpdate
+ */
+export type CarInquiryUpdate = {
+    /**
+     * Is Read
+     */
+    is_read?: boolean | null;
+    /**
+     * Notes
+     */
+    notes?: string | null;
+};
+
+/**
+ * CarPublic
+ */
+export type CarPublic = {
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Make
+     */
+    make: string;
+    /**
+     * Model
+     */
+    model: string;
+    /**
+     * Year
+     */
+    year: number;
+    /**
+     * Price
+     */
+    price: number;
+    /**
+     * Mileage
+     */
+    mileage?: number;
+    /**
+     * Engine
+     */
+    engine?: string | null;
+    /**
+     * Transmission
+     */
+    transmission?: string | null;
+    /**
+     * Exterior Color
+     */
+    exterior_color?: string | null;
+    /**
+     * Interior Color
+     */
+    interior_color?: string | null;
+    /**
+     * Vin
+     */
+    vin?: string | null;
+    /**
+     * Description
+     */
+    description?: string | null;
+    /**
+     * Is Featured
+     */
+    is_featured?: boolean;
+    /**
+     * Is Sold
+     */
+    is_sold?: boolean;
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Created At
+     */
+    created_at?: string | null;
+    /**
+     * Created By Id
+     */
+    created_by_id: string;
+    created_by?: UserPublic | null;
+    /**
+     * Images
+     */
+    images?: Array<CarImagePublic>;
+};
+
+/**
+ * CarUpdate
+ */
+export type CarUpdate = {
+    /**
+     * Title
+     */
+    title?: string | null;
+    /**
+     * Make
+     */
+    make?: string | null;
+    /**
+     * Model
+     */
+    model?: string | null;
+    /**
+     * Year
+     */
+    year?: number | null;
+    /**
+     * Price
+     */
+    price?: number | null;
+    /**
+     * Mileage
+     */
+    mileage?: number | null;
+    /**
+     * Engine
+     */
+    engine?: string | null;
+    /**
+     * Transmission
+     */
+    transmission?: string | null;
+    /**
+     * Exterior Color
+     */
+    exterior_color?: string | null;
+    /**
+     * Interior Color
+     */
+    interior_color?: string | null;
+    /**
+     * Vin
+     */
+    vin?: string | null;
+    /**
+     * Description
+     */
+    description?: string | null;
+    /**
+     * Is Featured
+     */
+    is_featured?: boolean | null;
+    /**
+     * Is Sold
+     */
+    is_sold?: boolean | null;
+};
+
+/**
+ * CarsPublic
+ */
+export type CarsPublic = {
+    /**
+     * Data
+     */
+    data: Array<CarPublic>;
+    /**
+     * Count
+     */
+    count: number;
 };
 
 /**
@@ -156,6 +586,90 @@ export type PrivateUserCreate = {
      * Is Verified
      */
     is_verified?: boolean;
+};
+
+/**
+ * SiteSettingsPublic
+ */
+export type SiteSettingsPublic = {
+    /**
+     * Dealership Name
+     */
+    dealership_name?: string | null;
+    /**
+     * Hero Headline
+     */
+    hero_headline?: string | null;
+    /**
+     * Hero Subheadline
+     */
+    hero_subheadline?: string | null;
+    /**
+     * Hero Image Url
+     */
+    hero_image_url?: string | null;
+    /**
+     * Hero Video Url
+     */
+    hero_video_url?: string | null;
+    /**
+     * Contact Email
+     */
+    contact_email?: string | null;
+    /**
+     * Contact Phone
+     */
+    contact_phone?: string | null;
+    /**
+     * Address
+     */
+    address?: string | null;
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Updated At
+     */
+    updated_at?: string | null;
+};
+
+/**
+ * SiteSettingsUpdate
+ */
+export type SiteSettingsUpdate = {
+    /**
+     * Dealership Name
+     */
+    dealership_name?: string | null;
+    /**
+     * Hero Headline
+     */
+    hero_headline?: string | null;
+    /**
+     * Hero Subheadline
+     */
+    hero_subheadline?: string | null;
+    /**
+     * Hero Image Url
+     */
+    hero_image_url?: string | null;
+    /**
+     * Hero Video Url
+     */
+    hero_video_url?: string | null;
+    /**
+     * Contact Email
+     */
+    contact_email?: string | null;
+    /**
+     * Contact Phone
+     */
+    contact_phone?: string | null;
+    /**
+     * Address
+     */
+    address?: string | null;
 };
 
 /**
@@ -920,6 +1434,735 @@ export type itemsUpdateItemResponses = {
 };
 
 export type itemsUpdateItemResponse = itemsUpdateItemResponses[keyof itemsUpdateItemResponses];
+
+export type carsReadMakesData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/cars/makes';
+};
+
+export type carsReadMakesResponses = {
+    /**
+     * Response Cars-Read Makes
+     *
+     * Successful Response
+     */
+    200: Array<string>;
+};
+
+export type carsReadMakesResponse = carsReadMakesResponses[keyof carsReadMakesResponses];
+
+export type carsReadCarsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Skip
+         */
+        skip?: number;
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Make
+         */
+        make?: string | null;
+        /**
+         * Min Price
+         */
+        min_price?: number | null;
+        /**
+         * Max Price
+         */
+        max_price?: number | null;
+        /**
+         * Year
+         */
+        year?: number | null;
+        /**
+         * Is Featured
+         */
+        is_featured?: boolean | null;
+        /**
+         * Include Sold
+         */
+        include_sold?: boolean;
+        /**
+         * Search
+         */
+        search?: string | null;
+        /**
+         * Sort
+         */
+        sort?: 'newest' | 'oldest' | 'price_asc' | 'price_desc' | 'year_desc' | 'year_asc' | 'mileage_asc';
+    };
+    url: '/api/v1/cars/';
+};
+
+export type carsReadCarsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type carsReadCarsError = carsReadCarsErrors[keyof carsReadCarsErrors];
+
+export type carsReadCarsResponses = {
+    /**
+     * Successful Response
+     */
+    200: CarsPublic;
+};
+
+export type carsReadCarsResponse = carsReadCarsResponses[keyof carsReadCarsResponses];
+
+export type carsCreateCarData = {
+    body: CarCreate;
+    path?: never;
+    query?: never;
+    url: '/api/v1/cars/';
+};
+
+export type carsCreateCarErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type carsCreateCarError = carsCreateCarErrors[keyof carsCreateCarErrors];
+
+export type carsCreateCarResponses = {
+    /**
+     * Successful Response
+     */
+    200: CarPublic;
+};
+
+export type carsCreateCarResponse = carsCreateCarResponses[keyof carsCreateCarResponses];
+
+export type carsDeleteCarData = {
+    body?: never;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+    };
+    query?: never;
+    url: '/api/v1/cars/{car_id}';
+};
+
+export type carsDeleteCarErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type carsDeleteCarError = carsDeleteCarErrors[keyof carsDeleteCarErrors];
+
+export type carsDeleteCarResponses = {
+    /**
+     * Successful Response
+     */
+    200: Message;
+};
+
+export type carsDeleteCarResponse = carsDeleteCarResponses[keyof carsDeleteCarResponses];
+
+export type carsReadCarData = {
+    body?: never;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+    };
+    query?: never;
+    url: '/api/v1/cars/{car_id}';
+};
+
+export type carsReadCarErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type carsReadCarError = carsReadCarErrors[keyof carsReadCarErrors];
+
+export type carsReadCarResponses = {
+    /**
+     * Successful Response
+     */
+    200: CarPublic;
+};
+
+export type carsReadCarResponse = carsReadCarResponses[keyof carsReadCarResponses];
+
+export type carsUpdateCarData = {
+    body: CarUpdate;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+    };
+    query?: never;
+    url: '/api/v1/cars/{car_id}';
+};
+
+export type carsUpdateCarErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type carsUpdateCarError = carsUpdateCarErrors[keyof carsUpdateCarErrors];
+
+export type carsUpdateCarResponses = {
+    /**
+     * Successful Response
+     */
+    200: CarPublic;
+};
+
+export type carsUpdateCarResponse = carsUpdateCarResponses[keyof carsUpdateCarResponses];
+
+export type carsUploadCarImagesData = {
+    body: Body_cars_upload_car_images;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+    };
+    query?: never;
+    url: '/api/v1/cars/{car_id}/images';
+};
+
+export type carsUploadCarImagesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type carsUploadCarImagesError = carsUploadCarImagesErrors[keyof carsUploadCarImagesErrors];
+
+export type carsUploadCarImagesResponses = {
+    /**
+     * Response Cars-Upload Car Images
+     *
+     * Successful Response
+     */
+    200: Array<CarImagePublic>;
+};
+
+export type carsUploadCarImagesResponse = carsUploadCarImagesResponses[keyof carsUploadCarImagesResponses];
+
+export type carsDeleteCarImageData = {
+    body?: never;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+        /**
+         * Image Id
+         */
+        image_id: string;
+    };
+    query?: never;
+    url: '/api/v1/cars/{car_id}/images/{image_id}';
+};
+
+export type carsDeleteCarImageErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type carsDeleteCarImageError = carsDeleteCarImageErrors[keyof carsDeleteCarImageErrors];
+
+export type carsDeleteCarImageResponses = {
+    /**
+     * Successful Response
+     */
+    200: Message;
+};
+
+export type carsDeleteCarImageResponse = carsDeleteCarImageResponses[keyof carsDeleteCarImageResponses];
+
+export type carsCreateInquiryData = {
+    body: CarInquiryCreate;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+    };
+    query?: never;
+    url: '/api/v1/cars/{car_id}/inquiries';
+};
+
+export type carsCreateInquiryErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type carsCreateInquiryError = carsCreateInquiryErrors[keyof carsCreateInquiryErrors];
+
+export type carsCreateInquiryResponses = {
+    /**
+     * Successful Response
+     */
+    201: Message;
+};
+
+export type carsCreateInquiryResponse = carsCreateInquiryResponses[keyof carsCreateInquiryResponses];
+
+export type adminReadAllCarsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Skip
+         */
+        skip?: number;
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Make
+         */
+        make?: string | null;
+        /**
+         * Min Price
+         */
+        min_price?: number | null;
+        /**
+         * Max Price
+         */
+        max_price?: number | null;
+        /**
+         * Year
+         */
+        year?: number | null;
+        /**
+         * Is Featured
+         */
+        is_featured?: boolean | null;
+        /**
+         * Is Sold
+         */
+        is_sold?: boolean | null;
+        /**
+         * Created By Id
+         */
+        created_by_id?: string | null;
+        /**
+         * Search
+         */
+        search?: string | null;
+        /**
+         * Sort
+         */
+        sort?: 'newest' | 'oldest' | 'price_asc' | 'price_desc' | 'year_desc' | 'year_asc' | 'mileage_asc';
+    };
+    url: '/api/v1/admin/cars/';
+};
+
+export type adminReadAllCarsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminReadAllCarsError = adminReadAllCarsErrors[keyof adminReadAllCarsErrors];
+
+export type adminReadAllCarsResponses = {
+    /**
+     * Successful Response
+     */
+    200: CarsPublic;
+};
+
+export type adminReadAllCarsResponse = adminReadAllCarsResponses[keyof adminReadAllCarsResponses];
+
+export type adminAdminDeleteCarData = {
+    body?: never;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+    };
+    query?: never;
+    url: '/api/v1/admin/cars/{car_id}';
+};
+
+export type adminAdminDeleteCarErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminAdminDeleteCarError = adminAdminDeleteCarErrors[keyof adminAdminDeleteCarErrors];
+
+export type adminAdminDeleteCarResponses = {
+    /**
+     * Successful Response
+     */
+    200: Message;
+};
+
+export type adminAdminDeleteCarResponse = adminAdminDeleteCarResponses[keyof adminAdminDeleteCarResponses];
+
+export type adminAdminUpdateCarData = {
+    body: CarUpdate;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+    };
+    query?: never;
+    url: '/api/v1/admin/cars/{car_id}';
+};
+
+export type adminAdminUpdateCarErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminAdminUpdateCarError = adminAdminUpdateCarErrors[keyof adminAdminUpdateCarErrors];
+
+export type adminAdminUpdateCarResponses = {
+    /**
+     * Successful Response
+     */
+    200: CarPublic;
+};
+
+export type adminAdminUpdateCarResponse = adminAdminUpdateCarResponses[keyof adminAdminUpdateCarResponses];
+
+export type adminAdminUploadCarImagesData = {
+    body: Body_admin_admin_upload_car_images;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+    };
+    query?: never;
+    url: '/api/v1/admin/cars/{car_id}/images';
+};
+
+export type adminAdminUploadCarImagesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminAdminUploadCarImagesError = adminAdminUploadCarImagesErrors[keyof adminAdminUploadCarImagesErrors];
+
+export type adminAdminUploadCarImagesResponses = {
+    /**
+     * Response Admin-Admin Upload Car Images
+     *
+     * Successful Response
+     */
+    200: Array<CarImagePublic>;
+};
+
+export type adminAdminUploadCarImagesResponse = adminAdminUploadCarImagesResponses[keyof adminAdminUploadCarImagesResponses];
+
+export type adminAdminDeleteCarImageData = {
+    body?: never;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+        /**
+         * Image Id
+         */
+        image_id: string;
+    };
+    query?: never;
+    url: '/api/v1/admin/cars/{car_id}/images/{image_id}';
+};
+
+export type adminAdminDeleteCarImageErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminAdminDeleteCarImageError = adminAdminDeleteCarImageErrors[keyof adminAdminDeleteCarImageErrors];
+
+export type adminAdminDeleteCarImageResponses = {
+    /**
+     * Successful Response
+     */
+    200: Message;
+};
+
+export type adminAdminDeleteCarImageResponse = adminAdminDeleteCarImageResponses[keyof adminAdminDeleteCarImageResponses];
+
+export type adminAdminUpdateCarImageData = {
+    body?: never;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+        /**
+         * Image Id
+         */
+        image_id: string;
+    };
+    query?: {
+        /**
+         * Is Primary
+         */
+        is_primary?: boolean | null;
+        /**
+         * Display Order
+         */
+        display_order?: number | null;
+    };
+    url: '/api/v1/admin/cars/{car_id}/images/{image_id}';
+};
+
+export type adminAdminUpdateCarImageErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminAdminUpdateCarImageError = adminAdminUpdateCarImageErrors[keyof adminAdminUpdateCarImageErrors];
+
+export type adminAdminUpdateCarImageResponses = {
+    /**
+     * Successful Response
+     */
+    200: CarImagePublic;
+};
+
+export type adminAdminUpdateCarImageResponse = adminAdminUpdateCarImageResponses[keyof adminAdminUpdateCarImageResponses];
+
+export type adminAdminReorderCarImagesData = {
+    body: CarImageReorder;
+    path: {
+        /**
+         * Car Id
+         */
+        car_id: string;
+    };
+    query?: never;
+    url: '/api/v1/admin/cars/{car_id}/images/reorder';
+};
+
+export type adminAdminReorderCarImagesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminAdminReorderCarImagesError = adminAdminReorderCarImagesErrors[keyof adminAdminReorderCarImagesErrors];
+
+export type adminAdminReorderCarImagesResponses = {
+    /**
+     * Response Admin-Admin Reorder Car Images
+     *
+     * Successful Response
+     */
+    200: Array<CarImagePublic>;
+};
+
+export type adminAdminReorderCarImagesResponse = adminAdminReorderCarImagesResponses[keyof adminAdminReorderCarImagesResponses];
+
+export type adminReadSiteSettingsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/admin/site-settings';
+};
+
+export type adminReadSiteSettingsResponses = {
+    /**
+     * Successful Response
+     */
+    200: SiteSettingsPublic;
+};
+
+export type adminReadSiteSettingsResponse = adminReadSiteSettingsResponses[keyof adminReadSiteSettingsResponses];
+
+export type adminUpdateSiteSettingsData = {
+    body: SiteSettingsUpdate;
+    path?: never;
+    query?: never;
+    url: '/api/v1/admin/site-settings';
+};
+
+export type adminUpdateSiteSettingsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminUpdateSiteSettingsError = adminUpdateSiteSettingsErrors[keyof adminUpdateSiteSettingsErrors];
+
+export type adminUpdateSiteSettingsResponses = {
+    /**
+     * Successful Response
+     */
+    200: SiteSettingsPublic;
+};
+
+export type adminUpdateSiteSettingsResponse = adminUpdateSiteSettingsResponses[keyof adminUpdateSiteSettingsResponses];
+
+export type adminReadInquiriesData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Skip
+         */
+        skip?: number;
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Is Read
+         */
+        is_read?: boolean | null;
+        /**
+         * Car Id
+         */
+        car_id?: string | null;
+        /**
+         * Search
+         */
+        search?: string | null;
+    };
+    url: '/api/v1/admin/inquiries/';
+};
+
+export type adminReadInquiriesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminReadInquiriesError = adminReadInquiriesErrors[keyof adminReadInquiriesErrors];
+
+export type adminReadInquiriesResponses = {
+    /**
+     * Successful Response
+     */
+    200: CarInquiriesPublic;
+};
+
+export type adminReadInquiriesResponse = adminReadInquiriesResponses[keyof adminReadInquiriesResponses];
+
+export type adminAdminDeleteInquiryData = {
+    body?: never;
+    path: {
+        /**
+         * Inquiry Id
+         */
+        inquiry_id: string;
+    };
+    query?: never;
+    url: '/api/v1/admin/inquiries/{inquiry_id}';
+};
+
+export type adminAdminDeleteInquiryErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminAdminDeleteInquiryError = adminAdminDeleteInquiryErrors[keyof adminAdminDeleteInquiryErrors];
+
+export type adminAdminDeleteInquiryResponses = {
+    /**
+     * Successful Response
+     */
+    200: Message;
+};
+
+export type adminAdminDeleteInquiryResponse = adminAdminDeleteInquiryResponses[keyof adminAdminDeleteInquiryResponses];
+
+export type adminAdminUpdateInquiryData = {
+    body: CarInquiryUpdate;
+    path: {
+        /**
+         * Inquiry Id
+         */
+        inquiry_id: string;
+    };
+    query?: never;
+    url: '/api/v1/admin/inquiries/{inquiry_id}';
+};
+
+export type adminAdminUpdateInquiryErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type adminAdminUpdateInquiryError = adminAdminUpdateInquiryErrors[keyof adminAdminUpdateInquiryErrors];
+
+export type adminAdminUpdateInquiryResponses = {
+    /**
+     * Successful Response
+     */
+    200: CarInquiryPublic;
+};
+
+export type adminAdminUpdateInquiryResponse = adminAdminUpdateInquiryResponses[keyof adminAdminUpdateInquiryResponses];
+
+export type adminReadAdminStatsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/admin/stats/';
+};
+
+export type adminReadAdminStatsResponses = {
+    /**
+     * Successful Response
+     */
+    200: AdminStatsPublic;
+};
+
+export type adminReadAdminStatsResponse = adminReadAdminStatsResponses[keyof adminReadAdminStatsResponses];
 
 export type privateCreateUserData = {
     body: PrivateUserCreate;
