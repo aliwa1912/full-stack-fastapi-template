@@ -73,6 +73,9 @@ jobs:
       working-directory: backend
     - run: bun ci
       working-directory: frontend
+    # compose.override.yml bind-mounts ./backend over the image, so the built
+    # SPA must exist on the host or the backend serves index.html without assets.
+    - run: bun run --filter frontend build
     - run: bash scripts/generate-client.sh
     - run: docker compose build
     - run: docker compose down -v --remove-orphans
